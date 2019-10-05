@@ -1,0 +1,64 @@
+body {
+	background: black;
+	color: red;
+
+	/* prevent scrollbars */
+	margin: 0;
+}
+
+.spinner {
+	/* give the children room to position themselves */
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	/* prevent scrollbars */
+	overflow: hidden;
+
+	/* text properties */
+	font: 80px sans-serif;
+
+	/* camera distance; the smaller the value,
+	 * the more emphasized the perspective effect will be */
+	perspective: 8em;
+}
+
+.spinner > div {
+	/* center */
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+
+	/* keep all text on the same line */
+	white-space: nowrap;
+
+	/* the shorter the time, the faster it spins */
+	animation: spin-xyz 20s ease-in-out infinite;
+}
+
+/* alternate animations, in case you have more than one child */
+
+.spinner > div:nth-child(2) {
+	animation-name: spin-yzx;
+	opacity: 0.5;
+}
+
+.spinner > div:nth-child(3) {
+	animation-name: spin-zxy;
+	opacity: 0.5;
+}
+
+/* three times the same rotations, just in a different order */
+
+@keyframes spin-xyz {
+	to   { transform: translate(-50%, -50%) rotateX(7turn) rotateY(9turn) rotateZ(5turn); }
+}
+
+@keyframes spin-yzx {
+	to   { transform: translate(-50%, -50%) rotateY(9turn) rotateZ(5turn) rotateX(7turn); }
+}
+
+@keyframes spin-zxy {
+	to   { transform: translate(-50%, -50%) rotateZ(5turn) rotateX(7turn) rotateY(9turn); }
+}
